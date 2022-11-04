@@ -6,11 +6,274 @@
 
     <groupId>cool.ange</groupId>
     <artifactId>coinExchange</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- 项目子模块 -->
+    <modules>
+        <!-- 基础服务设施模块  -->
+        <module>coin-iaas</module>
+        <!-- 系统公共服务模块 -->
+        <module>coin-common</module>
+        <!-- 系统后台管理模块 -->
+        <module>coin-admin</module>
+        <!-- 会员服务模块 -->
+        <module>coin-member</module>
+        <!-- 清算服务模块 -->
+        <module>coin-finance</module>
+        <!-- 系统推送服务模块 -->
+        <module>coin-push</module>
+        <!-- 系统统计分析服务模块 -->
+        <module>coin-statistics</module>
+        <!-- 系统定时服务模块 -->
+        <module>coin-task</module>
+        <!-- 撮合引擎模块 -->
+        <module>matchmaking-engine</module>
+        <!-- 在线交易服务模块 -->
+        <module>exchange-engine</module>
+    </modules>
+
+    <!-- 确定spring boot版本依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.11</version>
+    </parent>
+
+    <!-- 确定项目依赖版本-->
     <properties>
+        <!-- 确定Java版本 -->
+        <java.version>1.8</java.version>
+        <!-- 确定spring-cloud版本 -->
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
+        <!-- 确定spring-cloud-alibaba版本 -->
+        <com-alibaba-cloud.version>2021.0.4.0</com-alibaba-cloud.version>
+        <!-- 确定mybatis-plus版本 -->
+        <mybatis-plus-boot-stater.version>3.5.2</mybatis-plus-boot-stater.version>
+        <!-- 确定druid数据库连接池版本 -->
+        <druid-boot-stater.version>1.2.14</druid-boot-stater.version>
+        <!-- 确定swagger注解版本-->
+        <swagger-annotations.version>1.6.2</swagger-annotations.version>
+        <!-- swagger2版本 -->
+        <swagger2.version>3.0.0</swagger2.version>
+        <!-- 确定BeanUtils工具包版本 -->
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <!-- 确定redisson版本 -->
+        <redisson-spring-boot-stater.version>3.16.8</redisson-spring-boot-stater.version>
+        <!-- 确定jetCache通用缓存访问框架 -->
+        <jetcache-starter-redis.version>2.6.0</jetcache-starter-redis.version>
+        <!-- 确定disruptor高性能异步处理框架依赖版本 -->
+        <disruptor.version>3.4.2</disruptor.version>
+        <!-- 确定实体类映射工具类mapstruct版本 -->
+        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
+        <!-- Super CSV是一个用于处理CSV文件的Java开源项目 -->
+        <net.sf.supercsv.version>2.4.0</net.sf.supercsv.version>
+        <!-- springSide工具包版本 -->
+        <springside-utils.version>5.0.0-RC1</springside-utils.version>
+        <!-- 阿里云oss对象存储开发包版本 -->
+        <aliyun-sdk-oss.version>3.1.0</aliyun-sdk-oss.version>
+        <!-- 阿里云oss核心开发包版本 -->
+        <aliyun-java-sdk-core.version>4.0.3</aliyun-java-sdk-core.version>
+        <!-- md -->
+        <aliyun-java-sdk-dm.version>3.3.1</aliyun-java-sdk-dm.version>
+        <!-- joda-time 时间日期处理类 -->
+        <joda-time.version>2.10</joda-time.version>
+        <!-- 网络请求框架 -->
+        <okhttp.version>3.11.0</okhttp.version>
+        <!-- io工具库 -->
+        <okio.version>1.15.0</okio.version>
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <!-- dependencyManagement 标签用于控制子模块的依赖版本等信息  该标签只用来控制版本，不能将依赖引入 确定项目所需要的依赖 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- 确定spring-cloud依赖版本 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 确定spring-cloud-alibaba依赖版本 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${com-alibaba-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 确定mybatis-plus依赖版本-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-stater.version}</version>
+            </dependency>
+
+            <!-- 确定mybatis-plus注解依赖版本 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus-boot-stater.version}</version>
+            </dependency>
+
+            <!-- 确定druid数据库连接池依赖版本 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-boot-stater.version}</version>
+            </dependency>
+
+            <!-- 确定swagger2注解依赖版本 -->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+
+            <!-- 确定BeanUtils工具包依赖版本 -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+            <!-- 确定redisson依赖版本 -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
+
+            <!-- 确定jetCache通用缓存访问框架 -->
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-starter-redis</artifactId>
+                <version>${jetcache-starter-redis.version}</version>
+            </dependency>
+
+            <!-- 确定disruptor高性能异步处理框架依赖版本 -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+
+            <!-- 确定实体类映射工具类mapstruct版本 -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- swagger2依赖版本管理 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+
+            <!-- Super CSV是一个用于处理CSV文件的Java开源项目 -->
+            <dependency>
+                <groupId>net.sf.supercsv</groupId>
+                <artifactId>super-csv</artifactId>
+                <version>${net.sf.supercsv.version}</version>
+            </dependency>
+
+            <!-- springSide工具包版本-->
+            <dependency>
+                <groupId>io.springside</groupId>
+                <artifactId>springside-utils</artifactId>
+                <version>${springside-utils.version}</version>
+            </dependency>
+
+            <!-- 数据库版本管理工具 -->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+
+            <!-- 日期时间处理工具库 -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
+
+            <!-- 网络请求框架 -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+
+            <!-- io工具库 -->
+            <dependency>
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>${okio.version}</version>
+            </dependency>
+
+            <!-- 阿里云oss对象存储开发包版本 -->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+            <dependency>
+                <!-- 阿里云oss核心开发包版本 -->
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+            <!-- md -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-dm</artifactId>
+                <version>${aliyun-java-sdk-dm.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 在父项目中添加使用子项目中都会需要的依赖 选用最小的注解注解依赖核心包 -->
+    <dependencies>
+
+        <!-- 添加Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- 添加mybatis-plus核心注解 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+        </dependency>
+
+        <!-- 添加swagger2核心注解 -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+
+        <!-- 添加json处理工具库 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>
