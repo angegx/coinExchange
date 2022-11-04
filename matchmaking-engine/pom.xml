@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>coinExchange</artifactId>
+        <groupId>cool.ange</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 撮合引擎模块 -->
+    <artifactId>matchmaking-engine</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <!-- 撮合引擎接口调用模块 -->
+        <module>matchmaking-api</module>
+        <!-- 撮合引擎服务 -->
+        <module>matchmaking-service</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+</project>
