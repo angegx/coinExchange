@@ -21,6 +21,8 @@
 
 .svn/
 .settings/
+*.iws
+*.ipr
 .idea/
 target/
 *.project
