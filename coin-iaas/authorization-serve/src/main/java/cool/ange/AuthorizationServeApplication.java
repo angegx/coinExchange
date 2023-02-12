@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @className: AuthorizationServeApplication
  * @creationTime: 2023-02-12 19:28
  * @Version: v1.0
- * @description: todo
+ * @description: 认证授权中心启动类
  */
 @SpringBootApplication
 @EnableDiscoveryClient
