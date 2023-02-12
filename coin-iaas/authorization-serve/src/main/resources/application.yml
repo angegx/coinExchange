@@ -1,0 +1,11 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: coin-authorization-serve
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-server:8848
+        namespace: 4c55c5cb-068e-43f6-a8fa-fc86692b9509
+
