@@ -1,20 +1,42 @@
-server:
-  port: 80
 spring:
   application:
+    # 服务名称
     name: coin-gateway-serve
   cloud:
+    # nacos 配置中心配置
     nacos:
+      # nacos 服务管理配置
       discovery:
+        # nacos配置中心地址
         server-addr: nacos-server:8848
+        # 项目空间id
         namespace: 4c55c5cb-068e-43f6-a8fa-fc86692b9509
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: coin-admin-service_router
-          uri: lb://coin-admin-service
-          predicates:
-            - Path=/admin/**
+        # 分组id
+        group: DEFAULT_GROUP
+      # nacos 配置管理配置
+      config:
+        # nacos配置中心地址
+        server-addr: nacos-server:8848
+        # 项目空间id
+        namespace: 4c55c5cb-068e-43f6-a8fa-fc86692b9509
+        # 分组id
+        group: DEFAULT_GROUP
+        # 配置中心的配置文件的配置项类型
+        file-extension: yaml
+  # 配置启动的配置文件为开发环境
+  profiles:
+    # 配置为开发环境
+    active: dev
+  # 项目配置文件配置
+  config:
+    # 当如项目启动配置文件
+    import:
+      # 监听 DEFAULT_GROUP :coin-gateway-serve-dev.yaml
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+      # 在拉取nacos配置异常时会快速失败，会导致 spring 容器启动失败
+      - nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+
+
+
+
