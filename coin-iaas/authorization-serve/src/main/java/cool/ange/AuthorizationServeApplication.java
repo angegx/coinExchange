@@ -16,6 +16,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class AuthorizationServeApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AuthorizationServeApplication.class,args);
+        SpringApplication.run(AuthorizationServeApplication.class, args);
     }
 }
