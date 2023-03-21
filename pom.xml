@@ -53,15 +53,15 @@
         <!-- 确定druid数据库连接池版本 -->
         <druid-boot-stater.version>1.2.14</druid-boot-stater.version>
         <!-- 确定swagger注解版本-->
-        <swagger-annotations.version>1.6.2</swagger-annotations.version>
+        <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <!-- swagger2版本 -->
-        <swagger2.version>3.0.0</swagger2.version>
+        <swagger2.version>2.9.2</swagger2.version>
         <!-- 确定BeanUtils工具包版本 -->
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <!-- 确定redisson版本 -->
         <redisson-spring-boot-stater.version>3.16.8</redisson-spring-boot-stater.version>
         <!-- 确定jetCache通用缓存访问框架 -->
-        <jetcache-starter-redis.version>2.6.0</jetcache-starter-redis.version>
+        <jetcache-starter-redis.version>2.6.5</jetcache-starter-redis.version>
         <!-- 确定disruptor高性能异步处理框架依赖版本 -->
         <disruptor.version>3.4.2</disruptor.version>
         <!-- 确定实体类映射工具类mapstruct版本 -->
@@ -82,9 +82,11 @@
         <okhttp.version>3.11.0</okhttp.version>
         <!-- io工具库 -->
         <okio.version>1.15.0</okio.version>
+        <!-- huTool工具包 -->
+        <hutool.version>4.1.2</hutool.version>
 
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <!-- dependencyManagement 标签用于控制子模块的依赖版本等信息  该标签只用来控制版本，不能将依赖引入 确定项目所需要的依赖 -->
@@ -133,7 +135,7 @@
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-annotations.version}</version>
+               <version>${swagger-annotations.version}</version>
             </dependency>
 
             <!-- 确定BeanUtils工具包依赖版本 -->
@@ -181,6 +183,12 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <!-- swagger2-ui-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger2.version}</version>
             </dependency>
 
@@ -232,24 +240,32 @@
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-sdk-oss.version}</version>
             </dependency>
+
+            <!-- 阿里云oss核心开发包版本 -->
             <dependency>
-                <!-- 阿里云oss核心开发包版本 -->
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-core</artifactId>
                 <version>${aliyun-java-sdk-core.version}</version>
             </dependency>
+
             <!-- md -->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-dm</artifactId>
                 <version>${aliyun-java-sdk-dm.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <!-- 在父项目中添加使用子项目中都会需要的依赖 选用最小的注解注解依赖核心包 -->
     <dependencies>
-
         <!-- 添加Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
