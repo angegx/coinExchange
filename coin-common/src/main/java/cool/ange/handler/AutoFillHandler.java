@@ -31,10 +31,14 @@ public class AutoFillHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
+        // 获取当前操作的用户id
         Long userId = getCurrentUserId();
-        this.strictInsertFill(metaObject, "createBy", Long.class, userId); // 创建人
-        this.strictInsertFill(metaObject, "created", Date.class, new Date()); // 创建时间
-        this.strictInsertFill(metaObject, "lastUpdateTime", Date.class, new Date()); // 修改时间
+        // 创建人
+        this.strictInsertFill(metaObject, "createBy", Long.class, userId);
+        // 创建时间
+        this.strictInsertFill(metaObject, "created", Date.class, new Date());
+        // 修改时间
+        this.strictInsertFill(metaObject, "lastUpdateTime", Date.class, new Date());
     }
 
     /**
@@ -59,12 +63,14 @@ public class AutoFillHandler implements MetaObjectHandler {
      * @return Long
      */
     private Long getCurrentUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); // 从安全的上下文里面获取用户的ud
+        // 从安全的上下文里面获取用户的ud
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             // userId ->Long  anonymousUser
             String s = authentication.getPrincipal().toString();
+            String anonymousUser = "anonymousUser";
             //是因为用户没有登录访问时,就是这个用户
-            if ("anonymousUser".equals(s)) {
+            if (anonymousUser.equals(s)) {
                 return null;
             }
             return Long.valueOf(s);
