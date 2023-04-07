@@ -9,8 +9,6 @@ import cool.ange.mapper.SysRoleMapper;
 import cool.ange.domain.SysRole;
 import cool.ange.service.SysRoleService;
 import org.springframework.util.StringUtils;
-import org.springside.modules.utils.base.annotation.NotNull;
-
 /**
  * @author: ange
  * @package: cool.ange.service.impl
