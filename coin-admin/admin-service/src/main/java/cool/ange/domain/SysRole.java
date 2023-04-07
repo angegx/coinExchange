@@ -1,9 +1,6 @@
 package cool.ange.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -12,6 +9,7 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springside.modules.utils.base.annotation.NotNull;
 
 /**
  * @author: ange
@@ -40,6 +38,7 @@ public class SysRole {
      */
     @TableField(value = "`name`")
     @ApiModelProperty(value = "名称")
+    @NotNull()
     private String name;
 
     /**
@@ -47,6 +46,7 @@ public class SysRole {
      */
     @TableField(value = "code")
     @ApiModelProperty(value = "代码")
+    @NotNull()
     private String code;
 
     /**
@@ -54,19 +54,20 @@ public class SysRole {
      */
     @TableField(value = "description")
     @ApiModelProperty(value = "描述")
+    @NotNull()
     private String description;
 
     /**
      * 创建人
      */
-    @TableField(value = "create_by")
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建人")
     private Long createBy;
 
     /**
      * 修改人
      */
-    @TableField(value = "modify_by")
+    @TableField(value = "modify_by",fill = FieldFill.UPDATE)
     @ApiModelProperty(value = "修改人")
     private Long modifyBy;
 
@@ -80,14 +81,14 @@ public class SysRole {
     /**
      * 创建时间
      */
-    @TableField(value = "created")
+    @TableField(value = "created", fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
     private Date created;
 
     /**
      * 修改时间
      */
-    @TableField(value = "last_update_time")
+    @TableField(value = "last_update_time",fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "修改时间")
     private Date lastUpdateTime;
 }
