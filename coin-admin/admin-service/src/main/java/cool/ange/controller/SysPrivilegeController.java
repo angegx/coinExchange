@@ -27,11 +27,11 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @Api(tags = "权限配置", hidden = true)
 @Slf4j
-public class SysRolePrivilegeController {
+public class SysPrivilegeController {
 
     private final SysPrivilegeService sysPrivilegeService;
 
-    public SysRolePrivilegeController(SysPrivilegeService sysPrivilegeService) {
+    public SysPrivilegeController(SysPrivilegeService sysPrivilegeService) {
         this.sysPrivilegeService = sysPrivilegeService;
     }
 
