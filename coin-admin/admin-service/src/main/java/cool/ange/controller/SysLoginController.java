@@ -36,11 +36,12 @@ public class SysLoginController {
     @PostMapping("/login")
     @ApiOperation(value = "后台登录接口", httpMethod = "POST", notes = "后台管理人员登录系统接口，需要传递登录账户、密码参数。返回一个LoginResult实体类")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "登录账户", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "account", value = "登录账户", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "password", value = "登录密码", required = true, paramType = "query", dataType = "String")
     })
     public ResponseResult<LoginResult> login(@RequestBody Map<String, String> params) {
-        return ResponseResult.success("success", sysLoginService.login(params.get("username"), params.get("password")));
+        //调用service层的登录方法，并返回登录结果
+        return ResponseResult.success("success", sysLoginService.login(params.get("account"), params.get("password")));
     }
 
     /**

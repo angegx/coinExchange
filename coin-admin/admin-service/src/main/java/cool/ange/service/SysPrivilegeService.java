@@ -2,7 +2,11 @@ package cool.ange.service;
 
 import cool.ange.domain.SysPrivilege;
 import com.baomidou.mybatisplus.extension.service.IService;
-    /**
+import cool.ange.vo.SysMenuVO;
+
+import java.util.List;
+
+/**
  * @author: ange
  * @package: cool.ange.service
  * @className: SysPrivilegeService
@@ -12,5 +16,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SysPrivilegeService extends IService<SysPrivilege>{
 
-
-}
+    /**
+     * 根据角色ID获取菜单和权限
+     * @param roleId 角色ID
+     * @return 菜单和权限
+     */
+        List<SysMenuVO> getSysMenuAndPrivileges(String roleId);
+    }

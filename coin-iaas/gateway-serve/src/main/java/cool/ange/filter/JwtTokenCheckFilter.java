@@ -108,7 +108,7 @@ public class JwtTokenCheckFilter implements GlobalFilter, Ordered {
         JSONObject jsonObject = new JSONObject();
         //创建错误类型
         jsonObject.put("error", "NoAuthorization");
-        //创建错误学校
+        //创建错误信息
         jsonObject.put("errorMsg", "Token is Null or Error token为空或者token错误");
         //构建响应信息
         DataBuffer wrap = response.bufferFactory().wrap(jsonObject.toJSONString().getBytes());
