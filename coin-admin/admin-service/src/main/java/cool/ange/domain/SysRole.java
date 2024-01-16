@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ import org.springside.modules.utils.base.annotation.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_role")
-public class SysRole {
+public class SysRole implements Serializable {
 
     /**
      * 主键

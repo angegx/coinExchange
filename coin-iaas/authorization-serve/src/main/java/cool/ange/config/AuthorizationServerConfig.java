@@ -30,8 +30,14 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 @Configuration
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    /**
+     * 密码编码器
+     */
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * 认证管理器
+     */
     private final AuthenticationManager authenticationManager;
 
     /**

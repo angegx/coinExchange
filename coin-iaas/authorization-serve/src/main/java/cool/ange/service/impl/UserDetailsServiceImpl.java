@@ -73,7 +73,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 //会员登录
                 case LoginTypeConstant.MEMBER_TYPE -> loadMemberUserByUsername(username);
                 //两者的都不是，抛出“暂不支持的登录方式”异常
-                default -> throw new AuthenticationServiceException("暂不支持的登录方式" + loginType);
+                default -> loginModeThatIsNotSupported(loginType);
             };
         } catch (IncorrectResultSizeDataAccessException e) {
             //根据用户名查询不到权限信息，抛出用户名不存在异常
@@ -180,5 +180,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             //构建用户类，并将会员id作为会员名，同时校验会员是否处于使用中
             return new User(String.valueOf(memberLoginId), password, status == 1, true, true, true, List.of(new SimpleGrantedAuthority("ROLE_USER")));
         }, username, username);
+    }
+
+    /**
+     * 登录类型不支持的类型
+     * @param loginType 登录类型
+     * @return 抛出异常
+     */
+    private UserDetails loginModeThatIsNotSupported(String loginType) {
+        throw new AuthenticationServiceException("暂不支持的登录方式" + loginType);
     }
 }

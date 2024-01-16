@@ -35,8 +35,3 @@ spring:
       - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
       # 在拉取nacos配置异常时会快速失败，会导致 spring 容器启动失败
       - nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-
-
-
-
-

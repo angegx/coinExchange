@@ -24,20 +24,28 @@ import java.util.Set;
  * @className: JwtTokenCheckFilter
  * @creationTime: 2023-02-19 15:50
  * @Version: v1.0
- * @description: 在网关对所有的请求进行拦截来进行权限认证拦截
+ * @description: 在网关对所有的请求进行拦截来进行权限认证拦截，使用全局过滤器，实现GlobalFilter, Ordered接口
  * */
 
 @Component
 public class JwtTokenCheckFilter implements GlobalFilter, Ordered {
 
+    /**
+     * redis操作模板
+     */
     private final StringRedisTemplate redisTemplate;
 
     /**
-     * 配置不需要任何权限有可以访问的请求接口，如系统登录接口...
+     * 配置不需要任何权限有可以访问的请求接口，配置后台的登陆的请求接口可以直接访问
      */
     @Value("${no.require.urls:/admin/login}")
     private Set<String> noRequireUrls;
 
+    /**
+     * 构造器注入
+     *
+     * @param redisTemplate redis操作模板
+     */
     public JwtTokenCheckFilter(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }

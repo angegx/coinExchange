@@ -1,4 +1,4 @@
-package cool.ange.config.mybatisPlus;
+package cool.ange.config.mybatisplus;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.incrementer.IKeyGenerator;

@@ -1,5 +1,7 @@
 package cool.ange.service.impl;
 
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -50,6 +52,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
      * @return Page<SysRole> 返回一个Page<SysRole>实体类
      */
     @Override
+    @Cached(name="UserService:getUserById",key = "#name",expire = 3600, cacheType = CacheType.REMOTE)
     public Page<SysRole> getSysRolesDataByPage(Page<SysRole> page, String name) {
         // 按更新时间排序
         page.addOrder(OrderItem.desc("last_update_time"));

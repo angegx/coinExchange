@@ -94,4 +94,12 @@ public class SysPrivilege implements Serializable {
     @TableField(value = "last_update_time",fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value="修改时间")
     private Date lastUpdateTime;
+
+    /**
+     * 标记当前的角色是否有该权限
+     */
+    @TableField(exist = false)
+    @ApiModelProperty(value="当前角色是否拥有这个权限")
+    private int own ;
+
 }

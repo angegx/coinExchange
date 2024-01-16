@@ -99,10 +99,10 @@ public class WebSystemOperationLogsAspect {
         // cool.ange.controller.UserController.login() 记录执行的方法名称
         webSystemOperationLogs.setMethod(targetClassName + "." + method.getName());
         //{"key_参数的名称":"value_参数的值"} 记录方法的参数
-        webSystemOperationLogs.setParameter(getMethodParameter(method, proceedingJoinPoint.getArgs())); //{"key_参数的名称":"value_参数的值"}
+        webSystemOperationLogs.setParameter(getMethodParameter(method, proceedingJoinPoint.getArgs()));
         //记录返回体
         webSystemOperationLogs.setResult(result);
-        log.info(JSON.toJSONString(webSystemOperationLogs,true));
+        //返回webSystemOperationLogs对象
         return result;
     }
 
